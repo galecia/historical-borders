@@ -65,7 +65,7 @@ function startRouter() {
 	// make sure the url has a hash so the router doesn't break
 	// change this for production
 	if (hash === '' || hash === '/') {
-		window.location = '/2016/maproot/map.html#'; // ideally, remove this bloody index.html nonsense
+		window.location = '/historical-borders/maproot/map.html#'; // ideally, remove this bloody index.html nonsense
 	}
 
 	router.configure({
