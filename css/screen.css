@@ -1,0 +1,603 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*generic stuff*/
+body{
+  width: 100%;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  color: #000;
+}
+
+p{
+  line-height: 1.5em;
+  margin-bottom: 1em;
+}
+
+p.citation{
+  padding-left: 22px;
+  text-indent: -22px;
+}
+
+table{
+  width: 100%;
+  margin: 1em 0 2em 0;
+}
+
+tr{
+  margin-bottom: 2em;
+}
+
+a{
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+a:hover{
+  color: #108EBC;
+}
+
+a#selected{
+  border-bottom: 3px solid #1080BC;
+  font-weight: bold;
+  color: #888;
+}
+
+.caption{
+  padding: .5em 0 0 0;
+  font-style: oblique;
+}
+
+.float-left{
+  float: left;
+  width: 284px;
+  margin-right: 1em;
+}
+
+.italics{
+  font-style: oblique;
+}
+
+.clear{
+  margin:0;
+  padding:0;
+  line-height: 0;
+}
+
+
+/*Header bar*/
+#header-wrapper{
+  width: 100%;
+  background-color: #000000;
+}
+
+#header{
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+}
+
+#header h1{
+  padding: .8em .25em .15em .25em;
+  size: 1em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#header ul {
+  padding: 0em .1em .5em .25em;
+}
+
+#header ul li{
+  display: inline;
+  font-weight: normal;
+  font-size: .8em;
+}
+
+#header ul li a{
+  color: #888;
+  padding-right: 1em;
+}
+
+#header ul li a:hover{
+  color: #108EBC;
+
+}
+
+#statebox{
+  clear: both;
+  float: right;
+  width: 206px;
+  color: inherit;
+  padding: .25em .25em 0 0;
+}  
+
+#statebox label{
+  float: left;
+  font-size: .8em;
+  margin-left: .5em;
+  padding-bottom: 0;
+  vertical-align: top;
+  line-height: 1.5em;
+}
+
+#statebox select{
+  clear: both;
+  float: left;
+  margin-top: 0;
+  margin-left: .5em;
+  width: 154px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+#statebox #gotostate{
+  float: left;
+  width: 42px;
+  border-top: 1px solid #000;
+  border-right: 0;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  background-color: #c8c8c8;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+#statebox{
+  display: none;
+}
+
+/*navbar*/
+
+#navlist{
+  width: 900px;
+  margin: 1.5em auto .5em auto;
+}
+
+#navlist ul li{
+  display: inline;
+  margin: 0 2em 0 0;
+}
+
+/*message box*/
+/*style for special alert box that is prepended to navigation on home page only*/
+
+#message{
+  margin: 0 0 2em 0;
+  padding: 1em 4em .1em 1em;
+  background-color: #108EBC;
+  color: #fff;
+  font-size: 90%;
+}
+
+#message .close_button{
+  float: right;
+  position: relative;
+  top: .2em;
+  right: -2.75em;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+#message .close_button:hover{
+  color: #000;
+}
+
+/*page and pagecontent*/
+
+#page{
+  width: 900px;
+  margin: 1.5em auto;
+}
+
+#page h2{
+  color: #108EBC;
+  font-size: 1.5em;
+  padding: .5em 0;
+  font-weight: bold;
+}
+
+
+#page {
+    width: 100%;
+    margin: 0 0 0 0;
+}
+#map {
+    float: left;
+    padding: 0;
+}
+
+/*
+#page #map {
+  float: right;
+  width: 600px;
+  padding: .5em 0;
+}
+*/
+
+#page #interior-header{
+  padding: .25em 0;
+}
+
+.pageinset{
+  width: 270px;
+  position: relative;
+  float: right;
+  clear: right;
+  margin: 0 0 2em 2em;
+  text-align: center;
+  border: 1px solid #000;
+}
+
+.pageinset p{
+  margin: 0;
+  padding-bottom: 2em;
+}
+
+.pageinset img{
+  width: 87%;
+  margin: 1em;
+}
+
+.pageinset .caption{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: .5em 0;
+  text-align: center;
+}
+
+.no-border{
+  border: 0;
+}
+
+/*pagecontent styles*/
+#pagecontent{
+  width: 100%;
+}
+
+#pagecontent h3{
+  font-weight: bold;
+  padding: 1em 0 1em 0;
+}
+
+#pagecontent h4{
+  margin-top: 1em;
+  margin-bottom: .5em;
+  color: #888;
+  font-style: oblique;
+}
+
+/*lists*/
+#pagecontent ul, #pagecontent ol{
+  line-height: 1.5em;
+  margin-bottom: 1em;
+ }
+ 
+#pagecontent ol{
+   list-style-type: decimal;
+   list-position: inside;
+   padding-left: 4em;
+}
+ 
+/*tables*/
+#pagecontent table th{
+  text-align: left;
+  padding: .5em 0;
+  color: #108EBC;
+  font-weight: bold;
+}
+
+#pagecontent table .link {
+  width: 22%;
+  text-align: right;
+}
+
+#pagecontent table .row-divider{
+  padding: .5em 0;
+}
+
+
+#pagecontent table tr td{
+  padding: .25em 0;
+  vertical-align: top;
+}
+
+#pagecontent table .cell-note{
+  line-height: 1.5em;
+   margin-left: .1em;
+   font-size: .75em;
+   color: #888;
+   font-weight: normal;
+}
+
+/*special class for tables on state/us pages*/
+#pagecontent table.pages{
+  width: 630px;
+  margin-left: 3em;
+}
+
+/*for index and slider*/
+#pagecontent #us, #pagecontent #videos{
+   width: 400px;
+   float: left;
+   padding: .5em 1em;
+   margin: 0 0 1em;
+   border-top: 1px solid #000;
+}
+
+#pagecontent #us p, #pagecontent #videos p{
+   margin-top: 1em;
+}
+
+#pagecontent #us img{
+   margin-top: .5em;
+   padding-top: .5em;
+}
+
+#pagecontent #videos ul li {
+   width: 384px;
+   margin: .5em auto;
+   padding: .5em;
+   text-align: center;
+}
+
+#pagecontent #videos p.caption{
+   font-size: .9em;
+   text-align: center;
+   padding-bottom: 0;
+   margin-bottom: 0;
+}
+
+#pagecontent #videos a{
+   font-weight: normal;
+}
+
+/*styles for slider classes */
+.bx-wrapper{
+   width: 100%;
+   padding-top: 0;
+   padding-bottom: 0;
+}
+
+.bx-pager{
+   float: left;
+   width: 264px;
+   padding-top: .25em;
+   margin-left: 2em;
+}
+
+.bx-start{
+   float: right;
+   width: 70px;
+   text-align: right;
+   padding-top: 0;
+   margin-right: 2em;
+}
+
+.pager-link{
+   margin-right: 1em;
+}
+
+.pager-active{
+   font-weight: bold;
+   color: #888;
+   border-bottom: 2px solid #108EBC;
+}
+
+/*for statelist page*/
+#pagecontent .statelist{
+  float: left;
+  width: 209px;
+  margin-right: 1em;
+  padding-bottom: 2em;
+}
+
+/*for download index page*/
+#pagecontent div.download-link{  
+  float: left;
+  width: 385px;
+  height: 250px;
+  margin: 1em 2em 4em 2em;
+}
+
+#pagecontent div.link-wrapper{
+  position: relative;
+  min-height: 224px;
+  text-align: center;
+  padding-top: 1em;
+}
+
+#pagecontent #statedownloads{
+  background: url('../images/statesmap-small.gif') no-repeat center center;
+}
+
+#pagecontent #statedownloads:hover{
+  background: url('../images/statesmap-small-hover.gif') no-repeat center center;
+  color: #108EBC;
+}
+
+#pagecontent #usdownloads{
+  background: url('../images/usmap.gif') no-repeat center center;
+}
+
+#pagecontent #usdownloads:hover{
+  background: url('../images/usmap-hover.gif') no-repeat center center;
+}
+
+#pagecontent div.link-wrapper h3{
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  padding: 1em 0;
+}
+
+
+
+/*for download pages*/
+
+#pagecontent div#downloads{
+  width: 600px;
+   float: left;
+   margin-right: 4em;
+}
+
+#pagecontent div.sidebar{
+  width: 210px;
+   margin-top: 1.333333333em;
+   padding: 1em;
+   float: right;
+   border: 1px solid #000;;
+   font-size: 75%;
+}
+
+div.sidebar ol{
+  padding-left: 1.5em !important;
+}
+
+/*footer*/
+#footer-wrapper{
+  clear: both;
+  width: 100%;
+  padding-bottom: 3em;
+  border-top: 1px solid #000;
+}
+#footer{
+  width: 900px;
+  margin: 0 auto;
+  padding: 1em 0 2em 0;
+  font-size: .8em;
+  color: #000;
+}
+
+/*#footer p, #footer li, #footer a{
+  font-size: .9em;
+  color: #888;
+}*/
+
+#footer ul{
+  margin: 1em 0;
+  text-align: right;
+}
+
+#footer ul li{
+  padding: .15em 0;
+}
+
+#footer ul#rights{
+  float: left;
+}
+
+#footer ul#rights li{
+  float: left;
+  margin-right: 3em;
+}
+
+
+
+
+
+
+/*styles for heading/links on individual state pages */
+
+#pagecontent h3 a{
+	text-decoration:underline;
+	color: #108EBC;
+	}
+/*#pagecontent h3 a::before {content: ">";}*/
+td.link a{text-decoration:underline;}
+
+/*unavailable notice box styles and form styles for email submit */
+#unavailable-notice {
+	border: 3px solid red;
+	padding:8px;
+	text-align:center;
+	line-height:1.5em;
+	}
+
+.bold {
+	font-weight:bold;
+	font-size:115%
+	}
+.thankyou {
+	color:#108EBC;
+	}
+	
+#entry_1339295444 {line-height:1.5em;}
+
+#ss-submit {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 0px solid black;
+	background-color:olivedrab;
+	color:white;
+	font-size:1.5em;
+	
+	}
+.ss-question-list {}
+
+
+
+
+/*unavailable notice for text on state pages*/
+.unavailable {
+	color:#ccc;
+	}
+
+.unavailable a {
+	color:#ccc;
+	}
+
+.temp-text {color:red;}
+
+
+

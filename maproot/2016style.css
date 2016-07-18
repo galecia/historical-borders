@@ -1,0 +1,23 @@
+#page {
+    width: 100%;
+    margin: 0 0 0 0;
+}
+
+.map-controls {
+    width: 340px;
+    padding: 0;
+    float: left;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#map {
+    float: left;
+    padding: 0;
+}
+
+#statebox {
+    clear: both;
+    float: right;
+    width: 220px;
+}
