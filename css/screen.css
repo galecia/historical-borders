@@ -249,18 +249,6 @@ a#selected{
     width: 100%;
     margin: 0 0 0 0;
 }
-#map {
-    float: left;
-    padding: 0;
-}
-
-/*
-#page #map {
-  float: right;
-  width: 600px;
-  padding: .5em 0;
-}
-*/
 
 #page #interior-header{
   padding: .25em 0;
@@ -301,6 +289,20 @@ a#selected{
 /*pagecontent styles*/
 #pagecontent{
   width: 100%;
+}
+
+#pagecontent header {
+  margin: 0 1%;
+}
+
+#pagecontent header h1 {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 0.5em 0;
+}
+
+#pagecontent header a {
+  cursor: pointer;
 }
 
 #pagecontent h3{

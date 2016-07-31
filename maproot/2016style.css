@@ -3,17 +3,28 @@
     margin: 0 0 0 0;
 }
 
-.map-controls {
-    width: 340px;
+.map-controls, .map-canvas {
+    display: inline-block;
+    margin: 0 1%;
     padding: 0;
-    float: left;
-    margin-right: 20px;
-    margin-left: 20px;
+    vertical-align: top;
 }
 
-#map {
-    float: left;
-    padding: 0;
+.map-controls {
+    width: 31%;
+}
+
+.map-canvas {
+    width: 64%;
+}
+
+.leaflet-container {
+    min-height: 480px;
+    min-width: 640px;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 #statebox {
