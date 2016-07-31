@@ -16,11 +16,12 @@ var baseMapAttribution = '&copy; <a href="http://www.openstreetmap.org/copyright
 var basemap = new L.tileLayer(baseMapUrl, {
   attribution: baseMapAttribution
 });
-var initialMapCoords = {
+var mapOpts = {
   center: [39, -97],
+  scrollWheelZoom: false,
   zoom: 4
 };
-var map = new L.Map('map', initialMapCoords);
+var map = new L.Map('map', mapOpts);
 var router = new Router({
 	'/': mapsMainPage,
 	'/:state': loadStateMap
