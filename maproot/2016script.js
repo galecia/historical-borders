@@ -100,11 +100,7 @@ function mapsMainPage() {
 		}, []);
 	}
 
-	$.getJSON('https://jimbo.cartodb.com/api/v2/sql/?q=SELECT * FROM us_histcounties_gen001')
-		.done(function(data) {
-			console.log(data);
-		});
-	cartodb.createLayer(map, 'https://jimbo.cartodb.com/api/v2/viz/cd22c75c-c0b7-11e5-8529-0e787de82d45/viz.json')
+	cartodb.createLayer(map, 'https://newberrydis.carto.com/api/v2/viz/6b8d5f72-4d05-11e6-8f00-0ee66e2c9693/viz.json')
 		.addTo(map)
 		.on('done', function(layer) {
 			activeLayer.push(layer);
@@ -118,7 +114,7 @@ function mapsMainPage() {
 
 function loadStateMap(state) {
 	var dateListQuery = 'SELECT DISTINCT ON (start_date) start_date, to_char(start_date, \'MM-DD-YYYY\') date FROM ' + state.toLowerCase() + '_historical_counties ORDER BY start_date ASC';
-	var getDateList = $.getJSON('https://jimbo.cartodb.com/api/v2/sql/?q=' + dateListQuery);
+	var getDateList = $.getJSON('https://newberrydis.cartodb.com/api/v2/sql/?q=' + dateListQuery);
 
 	homeLink.removeClass('hidden');
 
@@ -201,7 +197,7 @@ function setInitialLayer(state) {
 function getLayersForDate(date, state) {
 	var layerQuery = 'SELECT ST_AsGeoJSON(the_geom) as geo, full_name, change, start_date, end_date FROM ' + state.toLowerCase() + '_historical_counties WHERE start_date <= \'' + date + '\' AND end_date >= \'' + date + '\'';
 
-	return $.getJSON('https://jimbo.cartodb.com/api/v2/sql/?q=' + layerQuery).done(function(data) {
+	return $.getJSON('https://newberrydis.cartodb.com/api/v2/sql/?q=' + layerQuery).done(function(data) {
 		var feature = getFeatureFromData(data),
 			layerToDisplay = L.geoJson(feature, {
 				onEachFeature: function(feature, layer) {
