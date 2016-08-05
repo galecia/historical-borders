@@ -1,3 +1,71 @@
+html {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+fieldset {
+	border: 0;
+	display: inline-block;
+}
+
+a {
+	color: #0000FF;
+	font-size: 12px;
+	text-decoration: underline;
+}
+
+h1 {
+	padding: 10px 0;
+}
+
+h2 {
+	padding-bottom: 20px;
+}
+
+form > label {
+	margin: 5px 0;
+}
+
+header,
+footer,
+.main-content {
+	padding: 0 20px;
+}
+
+.main-content {
+	margin: 20px auto;
+}
+
+.map-controls, .map-canvas {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.map-controls {
+	width: 33%;
+}
+
+.map-canvas {
+	width: 66%;
+}
+
+.leaflet-container {
+	min-height: 480px;
+	min-width: 640px;
+}
+
+.hidden {
+	display: none;
+}
 #page {
     width: 100%;
     margin: 0 0 0 0;
@@ -21,3 +89,5 @@
     float: right;
     width: 220px;
 }
+
+
