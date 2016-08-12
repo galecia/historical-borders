@@ -4,8 +4,6 @@ var utils = new Utils();
 var homeLink = $('#home');
 var title = $('#page-title');
 var dateList = $('#date-list');
-var stateSelect = $('#state-select');
-var dateSelect = $('#date-select');
 var datePager = $('#date-pager');
 var hash = utils.getHash(); // this may have to be changed for production
 
@@ -36,23 +34,9 @@ startRouter();
 // Set up initial form values and event handlers for form changes
 function initializeForm() {
 	var initialDateOption = $('<option value="initial">-- Select a Border Start Date --</option>');
-	var initialStateOption = $('<option value="initial">-- Select a State --</option>');
-	var initialDate = utils.getTodaysDate();
-
-	dateSelect.val(initialDate);
-	stateSelect.append(initialStateOption);
 	dateList.append(initialDateOption);
 
-	$.each(statesList, function(abbr, state) {
-		var selected = (state === statesList[hash]) ? ' selected' : '';
-		var stateOption = $('<option value="'+abbr+'"'+selected+'>'+state+'</option>');
-
-		stateSelect.append(stateOption);
-	});
-
 	datePager.on('change click', '*', pageDate);
-	dateSelect.on('change', utils.debounce(updateDate, 800));
-	stateSelect.on('change', viewState);
 
 	homeLink.on('click', function(event) {
 		event.preventDefault();
@@ -87,9 +71,7 @@ function mapsMainPage() {
 	homeLink.addClass('hidden');
 
 	title.text('Maps');
-	stateSelect.val('initial');
 
-	dateSelect.attr('disabled', true);
 	datePager.attr('disabled', 'disabled');
 
 	if (activeLayer.length) {
@@ -123,7 +105,6 @@ function loadStateMap(state) {
 
 	title.text(stateName);
 
-	dateSelect.removeAttr('disabled');
 	datePager.removeAttr('disabled');
 
 	getDateList

@@ -14,9 +14,16 @@
 <body>
 	<div id="header-wrapper">
 		<div id="header">
+			<div>
+				<h1>Atlas of Historical County Boundaries</h1>
+				<ul>
+					<li><a href="http://www.newberry.org" title="Newberry Library">The Newberry Library</a></li>
+					<li><a href="http://newberry.org/scholl-center" title="Scholl Center">Dr. William M. Scholl Center for American History and Culture</a></li>
+				</ul>
+			</div>
 			<form id="statebox">
-				<label><input type="radio" name="link_type" value="page" checked="checked" />Pages</label>
-				<!--<label><input type="radio" name="link_type" value="map" />Maps</label>-->
+				<label><input type="radio" name="link_type" value="page" />Pages</label>
+				<label><input type="radio" name="link_type" value="map" />Maps</label>
 				<label><input type="radio" name="link_type" value="metadata" />Metadata</label>
 				<select name="state_select" id="state_select" >
 					<option value="">Select...</option>
@@ -75,11 +82,6 @@
 				</select>
 				<input type="button" value="Go" id="gotostate" />
 			</form>
-			<h1>Atlas of Historical County Boundaries</h1>
-			<ul>
-				<li><a href="http://www.newberry.org" title="Newberry Library">The Newberry Library</a></li>
-				<li><a href="http://newberry.org/scholl-center" title="Scholl Center">Dr. William M. Scholl Center for American History and Culture</a></li>
-			</ul>
 		</div><!--closing div for header-->
 	</div><!--closing div for header-wrapper-->
 	<div id="navlist">
@@ -99,6 +101,7 @@
 
 	<header>
                 <h1 id="page-title"></h1>
+		<a id="home">Back to United States overview</a>
             </header>
 
             <section id="content" class="main-content">
@@ -106,14 +109,6 @@
                     <h2>Historical Borders</h2>
 
                     <form id="map-controls" name="map-controls">
-                        <label for="date-select">Date: <label>
-                        <input id="date-select" name="date-select" type="date">
-                        <br><br>
-
-                        <label for="state-select">State: </label>
-                        <select id="state-select" name="state-select"></select>
-                        <br><br>
-
                         <label for="date-pager">Border Changes: </label>
                         <fieldset id="date-pager" name="date-pager">
                             <button id="prev" name="prev" value="prev"> &lt;&lt; </button>
