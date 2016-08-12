@@ -66,7 +66,7 @@ function startRouter() {
 	// make sure the url has a hash so the router doesn't break
 	// change this for production
 	if (hash === '' || hash === '/') {
-		window.location = '/historical-borders/maproot/map.html#'; // ideally, remove this bloody index.html nonsense
+		// window.location = '/maproot/map.html#'; // ideally, remove this bloody index.html nonsense
 	}
 
 	router.configure({
@@ -106,19 +106,22 @@ function mapsMainPage() {
 			activeLayer.push(layer);
 
 			// map.fitBounds(layer);
-			map.setView(initialMapCoords.center, initialMapCoords.zoom);
+			map.setView(mapOpts.center, mapOpts.zoom);
 
 			console.log('main map done');
 		});
 }
 
 function loadStateMap(state) {
-	var dateListQuery = 'SELECT DISTINCT ON (start_date) start_date, to_char(start_date, \'MM-DD-YYYY\') date FROM ' + state.toLowerCase() + '_historical_counties ORDER BY start_date ASC';
+	var stateName = statesList[state];
+	var dateListQuery = 'SELECT DISTINCT ON (start_date) start_date, to_char(start_date, \'MM-DD-YYYY\') date FROM us_histcounties_gen001 WHERE state_terr ILIKE \'\%' + stateName + '\%\' ORDER BY start_date ASC';
 	var getDateList = $.getJSON('https://newberrydis.cartodb.com/api/v2/sql/?q=' + dateListQuery);
+
+	console.log(dateListQuery);
 
 	homeLink.removeClass('hidden');
 
-	title.text(statesList[state]);
+	title.text(stateName);
 
 	dateSelect.removeAttr('disabled');
 	datePager.removeAttr('disabled');
@@ -188,6 +191,7 @@ function populateDateList(data) {
 
 function setInitialLayer(state) {
 	return function(data) {
+	  console.log(data);
 		var date = data.rows.shift().start_date;
 
 		getLayersForDate(date, state);
@@ -195,7 +199,8 @@ function setInitialLayer(state) {
 }
 
 function getLayersForDate(date, state) {
-	var layerQuery = 'SELECT ST_AsGeoJSON(the_geom) as geo, full_name, change, start_date, end_date FROM ' + state.toLowerCase() + '_historical_counties WHERE start_date <= \'' + date + '\' AND end_date >= \'' + date + '\'';
+	var stateName = statesList[state];
+	var layerQuery = 'SELECT ST_AsGeoJSON(the_geom) as geo, full_name, change, start_date, end_date FROM us_histcounties_gen001 WHERE state_terr ILIKE \'\%' + stateName + '\%\' AND start_date <= \'' + date + '\' AND end_date >= \'' + date + '\'';
 
 	return $.getJSON('https://newberrydis.cartodb.com/api/v2/sql/?q=' + layerQuery).done(function(data) {
 		var feature = getFeatureFromData(data),
