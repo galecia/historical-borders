@@ -29,12 +29,12 @@ var activeLayer = [];
 map.addLayer(basemap);
 
 initializeForm();
+initializeInfo();
 startRouter();
 
 // Set up initial form values and event handlers for form changes
 function initializeForm() {
-	var initialDateOption = $('<option value="initial">-- Select a Border Start Date --</option>');
-	dateList.append(initialDateOption);
+	initializeDateList();
 
 	datePager.on('change click', '*', pageDate);
 
@@ -43,6 +43,19 @@ function initializeForm() {
 
 		router.setRoute('/');
 	});
+}
+
+function initializeDateList() {
+  var initialDateOption = $('<option value="initial">-- Select a Border Start Date --</option>');
+  dateList.empty();
+  dateList.append(initialDateOption);
+}
+
+function initializeInfo() {
+  var info = $('#info');
+  info.children('.name').text('');
+  info.children('.dates').text('');
+  info.children('.change').text('Hover your mouse pointer over a territory to view the historical record about this border change.');
 }
 
 // initialize the router
@@ -72,6 +85,9 @@ function mapsMainPage() {
 
 	title.text('Maps');
 
+	initializeInfo();
+
+	initializeDateList();
 	datePager.attr('disabled', 'disabled');
 
 	if (activeLayer.length) {
@@ -97,15 +113,15 @@ function mapsMainPage() {
 function loadStateMap(state) {
 	var stateName = statesList[state];
 	var dateListQuery = 'SELECT DISTINCT ON (start_date) start_date, to_char(start_date, \'MM-DD-YYYY\') date FROM us_histcounties_gen001 WHERE state_terr ILIKE \'\%' + stateName + '\%\' ORDER BY start_date ASC';
-	var getDateList = $.getJSON('https://newberrydis.cartodb.com/api/v2/sql/?q=' + dateListQuery);
-
-	console.log(dateListQuery);
+	var getDateList = $.getJSON(encodeURI('https://newberrydis.cartodb.com/api/v2/sql/?q=' + dateListQuery));
 
 	homeLink.removeClass('hidden');
 
 	title.text(stateName);
 
 	datePager.removeAttr('disabled');
+
+	initializeInfo();
 
 	getDateList
 		.done(populateDateList)
@@ -163,6 +179,7 @@ function viewState(event) {
  */
 
 function populateDateList(data) {
+	initializeDateList();
 	$.each(data.rows, function(key, val) {
 		var dateOption = $('<option value="' + val.date + '">' + val.date + '</option>');
 
@@ -172,7 +189,6 @@ function populateDateList(data) {
 
 function setInitialLayer(state) {
 	return function(data) {
-	  console.log(data);
 		var date = data.rows.shift().start_date;
 
 		getLayersForDate(date, state);
@@ -183,7 +199,7 @@ function getLayersForDate(date, state) {
 	var stateName = statesList[state];
 	var layerQuery = 'SELECT ST_AsGeoJSON(the_geom) as geo, full_name, change, start_date, end_date FROM us_histcounties_gen001 WHERE state_terr ILIKE \'\%' + stateName + '\%\' AND start_date <= \'' + date + '\' AND end_date >= \'' + date + '\'';
 
-	return $.getJSON('https://newberrydis.cartodb.com/api/v2/sql/?q=' + layerQuery).done(function(data) {
+	return $.getJSON(encodeURI('https://newberrydis.cartodb.com/api/v2/sql/?q=' + layerQuery)).done(function(data) {
 		var feature = getFeatureFromData(data),
 			layerToDisplay = L.geoJson(feature, {
 				onEachFeature: function(feature, layer) {
@@ -243,9 +259,15 @@ function populateInfo(data) {
 		endDate = new Date(data.dates.end),
 		end = endDate.toDateString();
 
+	info.addClass('active');
+
 	info.children('.name').text(data.fullName);
 	info.children('.dates').text(start + ' - ' + end);
 	info.children('.change').text(data.change);
+
+	setTimeout(function() {
+		info.removeClass('active');
+	}, 200);
 }
 
 /**

@@ -83,3 +83,13 @@ footer,
     float: left;
     padding: 0;
 }
+
+#info {
+    background-color: #fff;
+    transition: background-color 800ms;
+}
+
+#info.active {
+    background-color: #03f;
+    transition: background-color 600ms;
+}
