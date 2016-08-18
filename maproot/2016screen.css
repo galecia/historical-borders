@@ -151,12 +151,9 @@ a#selected{
 
 }
 
-#header > div {
-  display: inline-block;
-}
-
 #statebox{
-  display: inline-block;
+  clear: both;
+  float: right;
   width: 206px;
   color: inherit;
   padding: .25em .25em 0 0;
