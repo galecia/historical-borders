@@ -253,21 +253,22 @@ function getFeatureFromData(data) {
 }
 
 function populateInfo(data) {
-	var info = $('#info'),
-		startDate = new Date(data.dates.start),
-		start = startDate.toDateString(),
-		endDate = new Date(data.dates.end),
-		end = endDate.toDateString();
+	var info = $('#info');
+	if (info.children('.name').text() !== data.fullName) {
+		var startDate = new Date(data.dates.start),
+			start = startDate.toDateString(),
+			endDate = new Date(data.dates.end),
+			end = endDate.toDateString();
 
-	info.addClass('active');
+		info.addClass('active');
+		setTimeout(function() {
+			info.removeClass('active');
+		}, 200);
 
-	info.children('.name').text(data.fullName);
-	info.children('.dates').text(start + ' - ' + end);
-	info.children('.change').text(data.change);
-
-	setTimeout(function() {
-		info.removeClass('active');
-	}, 200);
+		info.children('.name').text(data.fullName);
+		info.children('.dates').text(start + ' - ' + end);
+		info.children('.change').text(data.change);
+	}
 }
 
 /**
