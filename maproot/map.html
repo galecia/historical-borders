@@ -14,16 +14,9 @@
 <body>
 	<div id="header-wrapper">
 		<div id="header">
-			<div>
-				<h1>Atlas of Historical County Boundaries</h1>
-				<ul>
-					<li><a href="http://www.newberry.org" title="Newberry Library">The Newberry Library</a></li>
-					<li><a href="http://newberry.org/scholl-center" title="Scholl Center">Dr. William M. Scholl Center for American History and Culture</a></li>
-				</ul>
-			</div>
 			<form id="statebox">
-				<label><input type="radio" name="link_type" value="page" />Pages</label>
-				<label><input type="radio" name="link_type" value="map" />Maps</label>
+				<label><input type="radio" name="link_type" value="page" checked="checked" />Pages</label>
+				<!--<label><input type="radio" name="link_type" value="map" />Maps</label>-->
 				<label><input type="radio" name="link_type" value="metadata" />Metadata</label>
 				<select name="state_select" id="state_select" >
 					<option value="">Select...</option>
@@ -82,6 +75,11 @@
 				</select>
 				<input type="button" value="Go" id="gotostate" />
 			</form>
+			<h1>Atlas of Historical County Boundaries</h1>
+			<ul>
+				<li><a href="http://www.newberry.org" title="Newberry Library">The Newberry Library</a></li>
+				<li><a href="http://newberry.org/scholl-center" title="Scholl Center">Dr. William M. Scholl Center for American History and Culture</a></li>
+			</ul>
 		</div><!--closing div for header-->
 	</div><!--closing div for header-wrapper-->
 	<div id="navlist">
