@@ -55,7 +55,7 @@ function initializeInfo() {
   var info = $('#info');
   info.children('.name').text('');
   info.children('.dates').text('');
-  info.children('.change').text('Hover your mouse pointer over a territory to view the historical record about this border change.');
+  info.children('.change').text('No region selected.');
 }
 
 // initialize the router
