@@ -4,6 +4,7 @@ var utils = new Utils();
 var homeLink = $('#home');
 var title = $('#page-title');
 var dateList = $('#date-list');
+var dateSelect = $('#date-select');
 var datePager = $('#date-pager');
 var hash = utils.getHash(); // this may have to be changed for production
 
@@ -36,7 +37,15 @@ startRouter();
 function initializeForm() {
 	initializeDateList();
 
+	dateSelect.val(utils.getTodaysDate());
+
 	datePager.on('change click', '*', pageDate);
+
+	dateSelect.on('keydown', function (event) {
+		if (event.keyCode === 13) {
+			updateDate(event);
+		}
+	});
 
 	homeLink.on('click', function(event) {
 		event.preventDefault();
@@ -88,6 +97,7 @@ function mapsMainPage() {
 	initializeInfo();
 
 	initializeDateList();
+	datePager.attr('disabled', true);
 	datePager.attr('disabled', 'disabled');
 
 	if (activeLayer.length) {
@@ -102,11 +112,7 @@ function mapsMainPage() {
 		.addTo(map)
 		.on('done', function(layer) {
 			activeLayer.push(layer);
-
-			// map.fitBounds(layer);
 			map.setView(mapOpts.center, mapOpts.zoom);
-
-			console.log('main map done');
 		});
 }
 
@@ -119,6 +125,7 @@ function loadStateMap(state) {
 
 	title.text(stateName);
 
+	dateSelect.removeAttr('disabled');
 	datePager.removeAttr('disabled');
 
 	initializeInfo();
@@ -162,8 +169,9 @@ function updateDate(event) {
 	event.preventDefault();
 
 	var date = event.target.value;
+	var state = utils.getHash();
 
-	console.log('updating Date field', event.target, date);
+	getLayersForDate(date, state);
 }
 
 function viewState(event) {
@@ -182,8 +190,14 @@ function populateDateList(data) {
 	initializeDateList();
 	$.each(data.rows, function(key, val) {
 		var dateOption = $('<option value="' + val.date + '">' + val.date + '</option>');
+		var formattedDate, year;
 
 		dateList.append(dateOption);
+
+		if (key === 1) {
+			year = val.date.split('-').pop();
+			dateSelect.val(year + '-01-01');
+		}
 	});
 }
 
@@ -203,7 +217,15 @@ function getLayersForDate(date, state) {
 		var feature = getFeatureFromData(data),
 			layerToDisplay = L.geoJson(feature, {
 				onEachFeature: function(feature, layer) {
+					layer.on('mouseout', utils.debounce(function(event) {
+						event.target.setStyle({
+							fillColor: '#0033ff'
+						});
+					}, 50));
 					layer.on('mouseover', utils.debounce(function(event) {
+						event.target.setStyle({
+							fillColor: '#0099ff'
+						});
 						populateInfo(feature.properties);
 					}, 50));
 				}
@@ -220,8 +242,6 @@ function getLayersForDate(date, state) {
 		activeLayer.push(layerToDisplay);
 
 		layerToDisplay.addTo(map);
-
-		map.fitBounds(layerToDisplay);
 
 		layerToDisplay.resetStyle();
 	});
@@ -284,8 +304,9 @@ function Utils() {
 			var today = new Date();
 			var month = initialZero(today.getMonth() + 1);
 			var date = initialZero(today.getDate());
+			var todaysDate = today.getFullYear()+'-'+month+'-'+date;
 
-			return today.getFullYear()+'-'+month+'-'+date;
+			return todaysDate;
 		},
 		debounce: function(func, wait, immediate) {
 			var timeout;
