@@ -316,6 +316,13 @@ a#selected{
   font-style: oblique;
 }
 
+h1#page-title {
+    color: #108EBC;
+    font-size: 1.5em;
+    padding: .5em 0;
+    font-weight: bold;
+}
+
 /*lists*/
 #pagecontent ul, #pagecontent ol{
   line-height: 1.5em;
