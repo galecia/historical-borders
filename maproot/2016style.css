@@ -35,6 +35,11 @@ footer,
 	padding: 0 20px;
 }
 
+/* aligning state and "back" link with other content */
+#pagecontent header {
+	margin: 0 0 0 20px;
+	}
+
 .main-content {
 	margin: 20px auto;
 }
