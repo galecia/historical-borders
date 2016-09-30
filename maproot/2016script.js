@@ -26,8 +26,16 @@ var router = new Router({
 	'/:state': loadStateMap
 });
 var activeLayer = [];
+var layerChangeZooming = false;
+var userFocused = false;
 
 map.addLayer(basemap);
+
+map.on('dragstart zoomstart', function(event) {
+	if (event.type === 'dragstart' || (event.type === 'zoomstart' && !layerChangeZooming)) {
+		userFocused = true;
+	}
+});
 
 initializeForm();
 initializeInfo();
@@ -205,13 +213,16 @@ function setInitialLayer(state) {
 	return function(data) {
 		var date = data.rows.shift().start_date;
 
-		getLayersForDate(date, state);
+		getLayersForDate(date, state, true);
 	}
 }
 
-function getLayersForDate(date, state) {
+function getLayersForDate(date, state, initialLayer) {
 	var stateName = statesList[state];
 	var layerQuery = 'SELECT ST_AsGeoJSON(the_geom) as geo, full_name, change, start_date, end_date FROM us_histcounties_gen001 WHERE state_terr ILIKE \'\%' + stateName + '\%\' AND start_date <= \'' + date + '\' AND end_date >= \'' + date + '\'';
+	var resizeLayer = initialLayer || !userFocused;
+
+	layerChangeZooming = true;
 
 	return $.getJSON(encodeURI('https://newberrydis.cartodb.com/api/v2/sql/?q=' + layerQuery)).done(function(data) {
 		var feature = getFeatureFromData(data),
@@ -243,7 +254,13 @@ function getLayersForDate(date, state) {
 
 		layerToDisplay.addTo(map);
 
+		if (resizeLayer) {
+			map.fitBounds(layerToDisplay);
+		}
+
 		layerToDisplay.resetStyle();
+
+		layerChangeZooming = false;
 	});
 }
 
