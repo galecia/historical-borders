@@ -6,6 +6,7 @@ var title = $('#page-title');
 var dateList = $('#date-list');
 var dateSelect = $('#date-select');
 var datePager = $('#date-pager');
+var dateLookup = $('#date-lookup');
 var hash = utils.getHash(); // this may have to be changed for production
 
 // Jim: update this URL/attribution string if you need
@@ -51,8 +52,15 @@ function initializeForm() {
 
 	dateSelect.on('keydown', function (event) {
 		if (event.keyCode === 13) {
-			updateDate(event);
+			event.preventDefault();
+			updateDate(event.target.value);
 		}
+	});
+
+	dateLookup.on('click', function (event) {
+	  event.preventDefault();
+
+	  updateDate(dateSelect.val());
 	});
 
 	homeLink.on('click', function(event) {
@@ -63,7 +71,7 @@ function initializeForm() {
 }
 
 function initializeDateList() {
-  var initialDateOption = $('<option value="initial">-- Select a Border Start Date --</option>');
+  var initialDateOption = $('<option value="initial">-- View Border Changes --</option>');
   dateList.empty();
   dateList.append(initialDateOption);
 }
@@ -173,10 +181,7 @@ function pageDate(event) {
 	}
 }
 
-function updateDate(event) {
-	event.preventDefault();
-
-	var date = event.target.value;
+function updateDate(date) {
 	var state = utils.getHash();
 
 	getLayersForDate(date, state);

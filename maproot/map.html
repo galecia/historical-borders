@@ -107,16 +107,21 @@
                     <h2>Historical Borders</h2>
 
                     <form id="map-controls" name="map-controls">
-			<label for="date-select">Date: </label>
+			<label for="date-select">Search By Date: </label><br>
 			<input id="date-select" name="date-select" type="date">
 			<br><br>
 
-                        <label for="date-pager">Border Changes: </label>
+                        <label for="date-pager">Browse By Date: </label>
+			<br>
                         <fieldset id="date-pager" name="date-pager">
                             <button id="prev" name="prev" value="prev"> &lt;&lt; </button>
                             <select id="date-list" name="date-list"></select>
                             <button id="next" name="next" value="next"> &gt;&gt; </button>
                         </fieldset>
+			<br><br>
+
+			<button id="date-lookup" type="submit">Go!</button>
+
 			<p><em><br />Use the arrow buttons to see how this state's borders have changed, or select a date from the dropdown menu. Hover your pointer over a territory to view the historical record about this border change.</em></p>
                     </form>
 
