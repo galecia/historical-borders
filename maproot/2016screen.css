@@ -233,7 +233,7 @@ a#selected{
   margin: 1.5em auto;
 }
 
-#page h2{
+#page h2, h1#page-title {
   color: #108EBC;
   font-size: 1.5em;
   padding: .5em 0;

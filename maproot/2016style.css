@@ -58,7 +58,7 @@ footer,
 }
 
 .leaflet-container {
-	min-height: 480px;
+	min-height: 600px;
 	min-width: 640px;
 }
 
@@ -92,3 +92,7 @@ footer,
     background-color: #addfff;
     transition: background-color 600ms;
 }
+
+
+
+
