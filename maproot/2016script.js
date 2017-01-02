@@ -3,6 +3,8 @@
 var utils = new Utils();
 var homeLink = $('#home');
 var title = $('#page-title');
+var stateLink = $('#state-detail-link');
+var stateLinkName = $('#breadcrumb-state-name');
 var dateList = $('#date-list');
 var dateSelect = $('#date-select');
 var datePager = $('#date-pager');
@@ -62,12 +64,6 @@ function initializeForm() {
 
 	  updateDate(dateSelect.val());
 	});
-
-	homeLink.on('click', function(event) {
-		event.preventDefault();
-
-		router.setRoute('/');
-	});
 }
 
 function initializeDateList() {
@@ -107,6 +103,7 @@ function startRouter() {
 
 function mapsMainPage() {
 	homeLink.addClass('hidden');
+	stateLink.addClass('hidden');
 
 	title.text('Maps');
 
@@ -138,8 +135,12 @@ function loadStateMap(state) {
 	var getDateList = $.getJSON(encodeURI('https://newberrydis.cartodb.com/api/v2/sql/?q=' + dateListQuery));
 
 	homeLink.removeClass('hidden');
+	stateLink.removeClass('hidden');
 
 	title.text(stateName);
+	stateLinkName.text(stateName);
+
+	stateLink.attr('href', '../../pages/' + stateName.replace(' ', '_') + '.html');
 
 	dateSelect.removeAttr('disabled');
 	datePager.removeAttr('disabled');

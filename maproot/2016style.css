@@ -93,6 +93,6 @@ footer,
     transition: background-color 600ms;
 }
 
-
-
-
+.map-form-submit {
+    margin-left: 20px;
+}
