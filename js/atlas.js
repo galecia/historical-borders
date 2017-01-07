@@ -28,7 +28,7 @@
 
     	var state = form["state_select"].value;
     	var link;
-		var location = "http://" + window.location.host + "/ahcbp";
+		var location = "http://" + window.location.host + "/borders";
 
     	/* conditional statements to build link based on the link_type */
     	if (link_type == "page") {
